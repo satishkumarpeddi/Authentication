@@ -1,5 +1,10 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const path = require('path')
+require('dotenv').config({
+    path:path.resolve(__dirname,'../.env')
+})
 const app = express(); // recreating a app instance's
 app.use(express.json()) // it is middleware that is used to get access to req.body 
 
