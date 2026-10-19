@@ -52,6 +52,21 @@ app.post('/signin',async (req,res)=>{
     console.log(users)
 })
 
+app.get('/me',(req,res)=>{
+    const token = req.headers.authorization;
+    const isValid = users.find((user)=>{
+        return user.token === token;
+    })
+    if(!isValid){
+        return res.status(403).json({
+            msg:"Authorization token is required or UnAuthorized Access"
+        }) 
+    }
+
+    res.status(200).json({
+        username:isValid.username,
+    })
+})
 
 app.listen(3000,()=>{
     console.log(`Server is running on the port : 3000`)
